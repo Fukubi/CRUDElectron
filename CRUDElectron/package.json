@@ -1,0 +1,26 @@
+{
+  "name": "crudelectron",
+  "version": "1.0.0",
+  "description": "Crud feito com Electron",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fukubi/CRUDElectron.git"
+  },
+  "author": "Fukubi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Fukubi/CRUDElectron/issues"
+  },
+  "homepage": "https://github.com/Fukubi/CRUDElectron#readme",
+  "devDependencies": {
+    "electron": "^9.1.1"
+  },
+  "dependencies": {
+    "react": "^16.13.1"
+  }
+}
