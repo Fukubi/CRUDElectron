@@ -1,0 +1,34 @@
+body {
+  flex: 1;
+}
+
+h1 {
+  font-family: 'Roboto', sans-serif;
+}
+
+p {
+  font-family: 'Montserrat', sans-serif;
+}
+
+header {
+  width: 100%;
+  height: 20%;
+}
+
+header .buttonNext {
+  margin-left: 600px;
+  margin-top: -8%;
+  text-align: right;
+  width: 200px;
+  float: right;
+}
+
+header .buttonNext i {
+  color: black;
+  float: right;
+}
+
+header .buttonNext p {
+  font-family: 'Roboto', sans-serif;
+  padding-right: 28%;
+}

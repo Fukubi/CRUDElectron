@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a3bc9796f2.js" crossorigin="anonymous"></script>
+    <title>Adicionar Pessoa</title>
+    <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+
+<body>
+    <!--HTML da tela-->
+    <header>
+        <h1>Adicionar cadastro</h1>
+        <div class="buttonNext">
+            <a href="../Inicio/index.html"><i class="fas fa-arrow-circle-left fa-3x"></i></a>
+            <p>Voltar</p>
+        </div>
+    </header>
+
+    <div id="corpo">
+        <form>
+            <div>
+                <label for="name">Nome:</label>
+                <input type="text" placeholder="Nome" id="name" />
+            </div>
+
+            <div>
+                <label for="number">Número de celular:</label>
+                <input type="tel" placeholder="Número de Celular" id="number" />
+            </div>
+
+            <div>
+                <label for="email">E-Mail:</label>
+                <input type="email" placeholder="E-Mail" id="email" />
+            </div>
+
+            <div id="button">
+                <button id="register" onclick="registerClick()">Registrar</button>
+            </div>
+        </form>
+
+        <p>Adicione uma pessoa ao cadastro para começar a preencher o banco de dados SQLite</p>
+    </div>
+
+    <!--Scripts JavaScript-->
+    <script>
+        //Importando os arquivos que serão usados
+        //Dialog é usado para mostrar uma tela de diálogo ao usuário utilizando a caixa de diálogo do SO do usuário
+        const { dialog } = require('electron').remote
+        const api = require('../services/api')
+
+        //Pegando os inputs do html e transformando em variáveis
+        let name = document.getElementById("name");
+        let number = document.getElementById("number");
+        let email = document.getElementById("email");
+
+        //Função do click no registrar
+        async function registerClick() {
+
+            //Verificação de campos vazios
+            if (name.value !== "" && number.value !== "" && email.value !== "") {
+
+                //Inserindo dados no banco de dados utilizando o axios
+                await api.post('/pessoas', {
+                    name: name.value,
+                    telefone: number.value,
+                    email: email.value
+                })
+
+                //Mostrando uma caixa de diálogo com uma confirmação
+                console.log(dialog.showMessageBox({ title: 'Confirmação', message: 'Salvo com sucesso!' }))
+            } else {
+
+                
+                //Mostrando uma caixa de diálogo para caso o usuário não tenha preenchido algum dos campos
+                console.log(dialog.showMessageBox({ title: 'Erro', message: 'Algum campo não foi informado, verifique se todos os campos estão preenchidos corretamente.' }));
+
+                if (name.value === "") {
+                    name.style.borderColor = "Red";
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
