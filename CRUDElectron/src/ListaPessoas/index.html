@@ -11,6 +11,7 @@
 </head>
 
 <body>
+    <!--HTML da Página-->
     <header>
         <h1>Adicionar cadastro</h1>
         <div class="buttonNext">
@@ -19,33 +20,35 @@
         </div>
     </header>
 
+    <!--Lugar onde é listado-->
     <div id="divList">
         <ul id="lista">
 
         </ul>
     </div>
 
+    <!--Inicialização dos ScriptJava-->
     <script>
+        //Importação de bibliotecas
         const api = require('../services/api')
-        var Dialogs = require('dialogs')
+        const Dialogs = require('dialogs')
 
+        //Inicialização do Dialogs
         const dialogs = Dialogs();
 
+        //Inserindo os elementos html em uma variável e carregando a lista
         var body = document.body;
         var ul = document.getElementById('lista');
         carregarLista();
 
         function carregarLista() {
 
-
+            //Chamada a API para a listagem
             api.get('/pessoas').then(response => {
-                try {
 
-                } catch {
-                    console.log('Elemento não existe')
-                }
-
+                //Mapeando elementos da lista
                 response.data.map(pessoa => {
+                    //criando elementos
                     var li = document.createElement('li');
 
                     var nome = document.createElement('p');
@@ -61,6 +64,7 @@
                     var divTelefone = document.createElement('div');
                     var divEmail = document.createElement('div');
 
+                    //Inserindo propriedades dos elementos
                     li.className = 'dado';
 
                     nome.textContent = `Nome: ${pessoa.name}`;
@@ -111,6 +115,8 @@
                             })
                         })
                     }
+
+                    //Inserindo elementos como criança
 
                     divNome.id = 'divNome'
                     divNome.appendChild(nome)
