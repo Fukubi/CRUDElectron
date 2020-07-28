@@ -34,21 +34,31 @@ header .buttonNext p {
 
 #corpo {
   margin-top: 4%;
+  margin-left: 1.5%;
   box-shadow: 1px 1px 5px darkgray;
   display: flex;
   flex-direction: row;
+  width: 760px;
 }
 
 #corpo form {
   display: flex;
   flex-direction: column;
   margin-top: 2%;
+  margin-left: 3%;
+  padding-right: 5%;
+  border-right-style: solid;
+  border-right-width: 1px;
 }
 
 #corpo form input {
   width: 200px;
   height: 15px;
   margin-bottom: 5%;
+}
+
+#corpo form #number {
+  width: 145px;
 }
 
 #corpo form #button {
@@ -69,7 +79,7 @@ header .buttonNext p {
 }
 
 #corpo p {
-  padding-left: 5%;
+  padding-left: 3%;
   width: 350px;
   height: 100px;
   text-align: justify;

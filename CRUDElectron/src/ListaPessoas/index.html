@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./index.css">
+    <script src="https://kit.fontawesome.com/a3bc9796f2.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&display=swap" rel="stylesheet">
+    <title>Lista de pessoas</title>
+</head>
+
+<body>
+    <header>
+        <h1>Adicionar cadastro</h1>
+        <div class="buttonNext">
+            <a href="../Inicio/index.html"><i class="fas fa-arrow-circle-left fa-3x"></i></a>
+            <p>Voltar</p>
+        </div>
+    </header>
+
+    <div id="divList">
+        <ul id="lista">
+
+        </ul>
+    </div>
+
+    <script>
+        const api = require('../services/api')
+        var Dialogs = require('dialogs')
+
+        const dialogs = Dialogs();
+
+        var body = document.body;
+        var ul = document.getElementById('lista');
+        carregarLista();
+
+        function carregarLista() {
+
+
+            api.get('/pessoas').then(response => {
+                try {
+
+                } catch {
+                    console.log('Elemento não existe')
+                }
+
+                response.data.map(pessoa => {
+                    var li = document.createElement('li');
+
+                    var nome = document.createElement('p');
+                    var telefone = document.createElement('p');
+                    var email = document.createElement('p');
+
+                    var excluir = document.createElement('button');
+                    var alterarNome = document.createElement('button');
+                    var alterarTelefone = document.createElement('button');
+                    var alterarEmail = document.createElement('button');
+
+                    var divNome = document.createElement('div');
+                    var divTelefone = document.createElement('div');
+                    var divEmail = document.createElement('div');
+
+                    li.className = 'dado';
+
+                    nome.textContent = `Nome: ${pessoa.name}`;
+                    telefone.textContent = `Telefone: ${pessoa.telefone}`;
+                    email.textContent = `E-mail: ${pessoa.email}`;
+
+                    excluir.textContent = 'Excluir registro';
+                    excluir.onclick = async () => {
+                        await api.delete(`/pessoas/${pessoa.id}`)
+                        ul.removeChild(li)
+                    };
+
+                    alterarNome.className = 'alterar'
+                    alterarNome.textContent = 'Alterar nome'
+                    alterarNome.onclick = () => {
+                        dialogs.prompt('Alteração', '', async (text) => {
+                            await api.put('/pessoas/nome', {
+                                id: pessoa.id,
+                                nameAlt: text
+                            }).then(function () {
+                                nome.textContent = `Nome: ${text}`
+                            })
+                        })
+                    }
+
+                    alterarTelefone.className = 'alterar'
+                    alterarTelefone.textContent = 'Alterar telefone'
+                    alterarTelefone.onclick = () => {
+                        dialogs.prompt('Alteração', '', async (text) => {
+                            await api.put('/pessoas/telefone', {
+                                id: pessoa.id,
+                                telefoneAlt: text
+                            }).then(function () {
+                                telefone.textContent = `Telefone: ${text}`
+                            })
+                        })
+                    }
+
+                    alterarEmail.className = 'alterar'
+                    alterarEmail.textContent = 'Alterar e-mail'
+                    alterarEmail.onclick = () => {
+                        dialogs.prompt('Alteração', '', async (text) => {
+                            await api.put('/pessoas/email', {
+                                id: pessoa.id,
+                                emailAlt: text
+                            }).then(function () {
+                                email.textContent = `E-mail: ${text}`
+                            })
+                        })
+                    }
+
+                    divNome.id = 'divNome'
+                    divNome.appendChild(nome)
+                    divNome.appendChild(alterarNome)
+
+                    divTelefone.id = 'divTelefone'
+                    divTelefone.appendChild(telefone)
+                    divTelefone.appendChild(alterarTelefone)
+
+                    divEmail.id = 'divEmail'
+                    divEmail.appendChild(email)
+                    divEmail.appendChild(alterarEmail)
+
+                    li.appendChild(divNome)
+                    li.appendChild(divTelefone)
+                    li.appendChild(divEmail)
+                    li.appendChild(excluir)
+                    ul.appendChild(li)
+                })
+            })
+        }
+    </script>
+</body>
+
+</html>

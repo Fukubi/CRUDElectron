@@ -29,7 +29,7 @@
 
             <div>
                 <label for="number">Número de celular:</label>
-                <input type="tel" placeholder="Número de Celular" id="number" />
+                <input type="number" placeholder="Número de Celular" id="number" />
             </div>
 
             <div>
@@ -63,15 +63,15 @@
             //Verificação de campos vazios
             if (name.value !== "" && number.value !== "" && email.value !== "") {
 
+                //Mostrando uma caixa de diálogo com uma confirmação
+                console.log(dialog.showMessageBox({ title: 'Confirmação', message: 'Salvo com sucesso!' }))
+
                 //Inserindo dados no banco de dados utilizando o axios
                 await api.post('/pessoas', {
                     name: name.value,
                     telefone: number.value,
                     email: email.value
                 })
-
-                //Mostrando uma caixa de diálogo com uma confirmação
-                console.log(dialog.showMessageBox({ title: 'Confirmação', message: 'Salvo com sucesso!' }))
             } else {
 
                 

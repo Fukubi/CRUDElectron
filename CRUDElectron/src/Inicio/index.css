@@ -32,3 +32,18 @@ header .buttonNext p {
   font-family: 'Roboto', sans-serif;
   padding-right: 28%;
 }
+
+#buttonList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 150px;
+}
+
+#buttonList a {
+  color: black;
+}
+
+#buttonList label {
+  font-family: 'Montserrat', sans-serif;
+}
