@@ -19,7 +19,7 @@
   "homepage": "https://github.com/Fukubi/CRUDElectron#readme",
   "devDependencies": {
     "@babel/core": "^7.10.5",
-    "electron": "^9.1.1"
+    "electron": "^9.3.0"
   },
   "dependencies": {
     "axios": "^0.19.2",
