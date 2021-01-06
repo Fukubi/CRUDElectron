@@ -22,7 +22,7 @@
     "electron": "^9.3.1"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "babel": "^6.23.0",
     "dialogs": "^2.0.1",
     "feather-icons": "^4.28.0",
